@@ -1,0 +1,197 @@
+<style>
+    .hideInDesktop .ps-product--cart{
+        max-width:100% !important;
+    }
+    @media only screen and (max-width:800px){
+        .ps-product--cart .ps-product__content{
+            padding-left:4rem !important;
+            text-align:left;
+        }
+        .ps-table--shopping-cart tbody tr td:last-child a{
+            font-size:14px;
+        }
+        .ps-table--shopping-cart tbody tr td:first-child{
+            min-width:0px !important;
+        }
+    }
+</style>
+<div class="ps-page--simple">
+        <div class="ps-breadcrumb">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li><a href="{{config.root}}">Home</a></li>
+                    <li><a href="{{config.root}}shop">Shop</a></li>
+                    <li>Cart</li>
+                </ul>
+            </div>
+        </div>
+        <div class="ps-section--shopping ps-shopping-cart pt-0">
+            <div class="container">
+                <div class="hideInDesktop mt-4">
+                    <a class="ps-btn ps-btn--fullwidth" href="{{config.root}}checkout">Proceed to checkout</a>
+                </div>
+                <div class="ps-section__content">
+                    <div class="table-responsive">
+                        <table class="table ps-table--shopping-cart">
+                            <tbody>
+                                {{#each cart.items}}
+                                <tr class="text-center hideInMobile">
+                                    <td>
+                                        <div class="ps-product--cart">
+                                            <div class="ps-product__thumbnail"><a href="{{image}}"><img src="{{image}}" alt="" width="100" height="100"></a></div>
+                                            <div class="ps-product__content"><a href="{{config.root}}product/{{slug}}">
+                                                {{title}}</a>
+                                                <p>SOLD BY <strong>{{vendor}}</strong></p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <a href="/save-for-later?product_id={{id}}">
+                                        {{#if savedForLater}}
+                                        <i class="fa fa-heart" style="font-size:24px;color:#fcb800;"></i>
+                                        {{else}}
+                                        <i class="fa fa-heart-o" style="font-size:24px;color:grey;"></i>
+                                        {{/if}}
+                                        </a>
+                                    </td>
+                                    <td class="price">{{formattedPrice}}</td>
+                                    <td>
+                                        <form method="post" action="{{config.root}}cart/update/{{id}}" id="updateForm{{id}}">
+                                        <div class="form-group--number">
+                                            <button type="button" class="up addItem" data-id="{{id}}" data-qty="{{qty}}">+</button>
+                                            <button type="button" class="down removeItem" data-id="{{id}}" data-qty="{{qty}}">-</button>
+                                            <input class="form-control" type="text" value="{{qty}}" min="1" name="qty">
+                                        </div>
+                                        <button type="submit" style="display:none;"></button>
+                                        </form>
+                                    </td>
+                                    <td>${{multiply price qty}}</td>
+                                    <td>
+                                        <form action="{{config.root}}cart/remove/{{id}}" method="post">
+                                        <button type="submit" style="border:0px;"><i class="icon-cross"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <tr class="text-center hideInDesktop">
+                                    <td>
+                                        <div class="ps-product--cart">
+                                            <div class="ps-product__thumbnail"><a href="{{image}}"><img src="{{image}}" alt="" width="100"  height="100"></a></div>                                           
+                                            <div class="ps-product__content"><a href="{{config.root}}product/{{slug}}">
+                                                {{title}}</a>                                             
+                                                <p>SOLD BY <strong>{{vendor}}</strong></p>
+                                                <p class="price">{{formattedPrice}}</p>
+                                                <form method="post" action="{{config.root}}cart/update/{{id}}" id="updateForm{{id}}">
+                                                <div class="form-group--number">
+                                                    <button type="button" class="up addItem" data-id="{{id}}" data-qty="{{qty}}">+</button>
+                                                    <button type="button" class="down removeItem" data-id="{{id}}" data-qty="{{qty}}">-</button>
+                                                    <input class="form-control" type="text" value="{{qty}}" min="1" name="qty">
+                                                </div>
+                                                <button type="submit" style="display:none;"></button>
+                                                </form>
+                                                <p class="mt-2 mb-0">Subtotal : ${{multiply price qty}}</p>
+                                                <form action="{{config.root}}cart/remove/{{id}}" method="post">
+                                                
+                                                <a href="/save-for-later?product_id={{id}}">
+                                                {{#if savedForLater}}
+                                                <i class="fa fa-heart" style="border:0px;" color:#fcb800; href="{{config.base_url}}/saved-for-later">Saved</i>
+                                                {{else}}
+                                                <i class="fa fa-heart-o" style="border:0px; "color:grey;>Save</i>
+                                                {{/if}}
+                                                </a> 
+
+                                                <button class="icon-trash" style="border:0px;">Delete</button>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                    {{!-- <div class="ps-section__cart-actions">
+                        <a class="ps-btn" href="{{config.root}}shop"><i class="icon-arrow-left"></i> Back to Shop</a>
+                    {{#if cart.items.length}}
+                    <form action="{{config.root}}cart/empty" method="post">
+                    <button class="ps-btn" type="submit"><i class="icon-sync"></i> Empty cart</a>
+                    </form>
+                    {{/if}}
+                    </div> --}}
+                </div>
+                <div class="ps-section__footer">
+                    <div class="row">
+                        {{!-- <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+                            <figure>
+                                <figcaption>Coupon Discount</figcaption>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <button class="ps-btn ps-btn--outline">Apply</button>
+                                </div>
+                            </figure>
+                        </div> --}}
+                        {{!-- <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+                            <figure>
+                                <figcaption>Calculate shipping</figcaption>
+                                <div class="form-group">
+                                    <select class="ps-select select2-hidden-accessible" data-select2-id="1" tabindex="-1" aria-hidden="true">
+                                        <option value="1" data-select2-id="3">America</option>
+                                        <option value="2">Italia</option>
+                                        <option value="3">Vietnam</option>
+                                    </select><span class="select2 select2-container select2-container--default" dir="ltr" data-select2-id="2" style="width: 120px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-7m5f-container"><span class="select2-selection__rendered" id="select2-7m5f-container" role="textbox" aria-readonly="true" title="America">America</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" placeholder="Town/City">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" placeholder="Postcode/Zip">
+                                </div>
+                                <div class="form-group">
+                                    <button class="ps-btn ps-btn--outline">Update</button>
+                                </div>
+                            </figure>
+                        </div> --}}
+                        {{#if cart.items.length}}
+                        <div class="col-xl-6 col-12 m-auto">
+                            <div class="ps-block--shopping-total">
+                                {{!-- <div class="ps-block__header">
+                                    <p>Subtotal <span> ${{cart.withoutShippingTotals}}</span></p>
+                                </div> --}}
+                                <div class="ps-block__content">
+                                    <ul class="ps-block__product">
+                                        {{#each cart.items}}
+                                        <li><span class="ps-block__shop">{{vendor}} Shipping</span>
+                                        {{!-- <span class="ps-block__shipping">Free Shipping</span> --}}
+                                        <span class="ps-block__estimate">
+                                        <a href="#"> {{title}} x {{qty}}</a>
+                                        </span>
+                                        </li>
+                                        {{/each}}
+                                    </ul>
+                                    <h3>Total <span>${{cart.withoutShippingTotals}}</span></h3>
+                                </div>
+                            </div><a class="ps-btn ps-btn--fullwidth" href="{{config.root}}checkout">Proceed to checkout</a>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).on("click",".addItem",function(){
+            const product_id=$(this).data("id");
+            const qty=parseInt($(this).data("qty"))+1;
+            $(`#updateForm${product_id} input[name=qty]`).val(qty);
+            $(`#updateForm${product_id}`).submit();
+        });
+        $(document).on("click",".removeItem",function(){
+            const product_id=$(this).data("id");
+            const qty=parseInt($(this).data("qty"))-1;
+            $(`#updateForm${product_id} input[name=qty]`).val(qty);
+            $(`#updateForm${product_id}`).submit();
+        });
+    </script>

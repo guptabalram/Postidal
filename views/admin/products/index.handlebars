@@ -1,0 +1,54 @@
+<h2 class="text-center mt-2 mb-4">All Products Data</h2>
+
+<table class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Subcategory</th>
+      <th>Price</th>
+      <th>Discount</th>
+      <th>Quantity</th>
+      <th>Status</th>
+      <th colspan="2">Images</th>
+      <th colspan="4">Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+
+    {{#each products}}
+
+    <tr>
+      <td>{{name}}</td>
+      <td>{{category.name}}</td>
+      <td>{{subcategory.name}}</td>
+      <td>{{price}}</td>
+      <td>{{discount}}%</td>
+      <td>{{quantity}}</td>
+      <td>{{status}}</td>
+      <td colspan="2">
+        {{#each images}}
+        <a href="{{.}}" target="_blank"><img src="{{.}}" width="50px" height="50px" alt="image"/></a>
+        {{/each}}
+      </td>
+      <td><a href="#">View</a></td>
+      {{#if show_in_deals_of_day}}
+      <td><a href="/admin/products/update_deals_of_the_day/remove/{{_id}}">Remove from DOTD</a></td>
+      {{else}}
+      <td><a href="/admin/products/update_deals_of_the_day/show/{{_id}}">Show in DOTD</a></td>
+      {{/if}}
+      <td><a href="/admin/products/edit/{{_id}}" class="btn btn-info">Edit</a></td>
+				<td>
+					<form action="/admin/products/{{_id}}?_method=DELETE" method="post">
+						<button class="btn btn-danger" type="submit">Delete</button>
+					</form>
+				</td>
+      
+    </tr>
+
+    {{/each}}
+        
+  </tbody>
+</table>
+{{{pagination}}}

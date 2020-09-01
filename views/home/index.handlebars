@@ -1,0 +1,287 @@
+<div id="homepage-1">
+        <div class="ps-home-banner ps-home-banner--1 p-0">
+            <div class="ps-container p-0" style="flex-wrap:wrap;">
+                <div class="col-md-12 p-0">
+                    <div class="ps-carousel--nav-inside owl-slider" data-owl-auto="true" data-owl-loop="true" data-owl-speed="5000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="1" data-owl-item-xs="1" data-owl-item-sm="1" data-owl-item-md="1" data-owl-item-lg="1" data-owl-duration="1000" data-owl-mousedrag="on">
+
+                        {{#each homepage.carousel_images as |item i| }}
+                        <div class="ps-banner">
+                            <a href="{{ lookup @root.homepage.carousel_images_link i}}">
+                            <img class="carouselAdImg" src="{{item}}" alt="">
+                            </a>
+                            </div>
+                        {{/each}}
+
+                    </div>
+                </div>
+                <div class="row m-0 hideInDesktop mb-5">
+                    <a class="ps-collection col-6 p-1" href="{{homepage.top_side_ad_1_link}}"><img class="topSideAdImg" src="{{homepage.top_side_ad_1}}" alt=""></a>
+                    <a class="ps-collection col-6 p-1" href="{{homepage.top_side_ad_2_link}}"><img class="topSideAdImg" src="{{homepage.top_side_ad_2}}" alt=""></a></div>
+            </div>
+        </div>
+
+        <div class="ps-deal-of-day pb-0">
+            <div class="ps-container">
+                <div class="ps-section__header">
+                    <div class="ps-block--countdown-deal">
+                        <div class="ps-block__left">
+                            <h3 style="font-size:20px !important;font-weight:600 !important;color:#000 !important;">Today's Deals</h3>
+                        </div>
+                        {{!-- <div class="ps-block__right">
+                            <figure>
+                                <figcaption>End in:</figcaption>
+                                <ul class="ps-countdown" data-time="July 21, 2020 15:37:25">
+                                    <li><span class="days"></span></li>
+                                    <li><span class="hours"></span></li>
+                                    <li><span class="minutes"></span></li>
+                                    <li><span class="seconds"></span></li>
+                                </ul>
+                            </figure>
+                        </div> --}}
+                    </div><a href="{{config.root}}shop">View all</a>
+                </div>
+                <div class="ps-section__content">
+                    <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
+                        {{#each dotdProducts}}
+                        <div class="ps-product ps-product--inner">
+                            <div class="ps-product__thumbnail"><a href="{{config.root}}product/{{slug}}"><img class="imgFixed" src="{{images.[0]}}" alt=""></a>
+                                {{#if (gt discount 0) }}<div class="ps-product__badge">-{{discount}}%</div>{{/if}}
+                                
+                                {{!-- <ul class="ps-product__actions">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
+                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
+                                </ul> --}}
+                            </div>
+                            <div class="ps-product__container">
+                                <p class="ps-product__price sale">${{final_price}} {{#if (gt price final_price)}}<del>${{price}} </del>{{/if}}<small>{{discount}}% off</small></p>
+                                <div class="ps-product__content"><a class="ps-product__title" href="{{config.root}}product/{{slug}}">{{name}}</a>
+                                    {{!-- <div class="ps-product__rating">
+                                        <select class="ps-rating" data-read-only="true">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select><span>01</span>
+                                    </div> --}}
+                                    <div class="ps-product__progress-bar ps-progress" data-value="{{quantity}}">
+                                        <div class="ps-progress__value"><span style="max-width:100%;"></span></div>
+                                        <p>Remaining:{{quantity}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- <div class="ps-home-ads">
+            <div class="ps-container">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+                        <a class="ps-collection" href="{{homepage.mid_page_ad_1_link}}">
+                            <img class="midPageAdImg" src="{{homepage.mid_page_ad_1}}" alt="">
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+                        <a class="ps-collection" href="{{homepage.mid_page_ad_2_link}}">
+                            <img class="midPageAdImg" src="{{homepage.mid_page_ad_2}}" alt="">
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+                        <a class="ps-collection" href="{{homepage.mid_page_ad_3_link}}">
+                            <img class="midPageAdImg" src="{{homepage.mid_page_ad_3}}" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        <div class="ps-top-categories">
+            <div class="ps-container">
+                <h3 class="centerMobile">Shop By Room</h3>
+                <div class="row">
+                    {{#each rooms}}
+                    {{#if (or (contains name "Game") (contains name "Patio"))}}
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 hideInMobile">
+                        <a href="{{config.root}}room/{{slug}}">
+                        <div class=""><img class="imgRoom" src="{{image}}" alt="" loading="lazy">
+                            <p style="text-align:center;margin-top:1.4rem;font-size:1.6rem;color:black;text-transform:capitalize;">{{name}}</p>
+                        </div>
+                        </a>
+                    </div>
+                    {{else}}
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-4 col-6 ">
+                        <a href="{{config.root}}room/{{slug}}">
+                        <div class=""><img class="imgRoom" src="{{image}}" alt="" loading="lazy">
+                            <p style="text-align:center;margin-top:1.4rem;font-size:1.6rem;color:black;text-transform:capitalize;">{{name}}</p>
+                        </div>
+                        </a>
+                    </div>
+                    {{/if}}
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+
+        {{#each allCategoriesWithProducts}}
+        <div class="ps-product-list ps-clothings">
+            <div class="ps-container">
+                <div class="ps-section__header">
+                    <h3 class="capitalize">{{category.name}}</h3>
+                    <ul class="ps-section__links">
+                        {{!-- <li><a href="shop-grid.html">New Arrivals</a></li>
+                        <li><a href="shop-grid.html">Best seller</a></li>
+                        <li><a href="shop-grid.html">Must Popular</a></li> --}}
+                        <li><a href="{{config.root}}shop/categories">View All</a></li>
+                    </ul>
+                </div>
+                <div class="ps-section__content">
+                    <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="0" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
+
+                        {{#each products}}
+                        <div class="ps-product">
+                            <div class="ps-product__thumbnail"><a href="{{config.root}}product/{{slug}}"><img class="imgFixed" src="{{images.[0]}}" alt=""></a>
+                                {{#if (gt discount 0) }}<div class="ps-product__badge">-{{discount}}%</div>{{/if}}
+                                {{!-- <ul class="ps-product__actions">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
+                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
+                                </ul> --}}
+                            </div>
+                            <div class="ps-product__container"><a class="ps-product__vendor" href="#">{{vendor}}</a>
+                                <div class="ps-product__content"><a class="ps-product__title" href="{{config.root}}product/{{slug}}">{{name}}</a>
+                                    {{!-- <div class="ps-product__rating">
+                                        <select class="ps-rating" data-read-only="true">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select><span>01</span>
+                                    </div> --}}
+                                    <p class="ps-product__price sale">${{final_price}} {{#if (gt price final_price)}}<del>${{price}} </del>{{/if}}</p>
+                                </div>
+                                <div class="ps-product__content hover"><a class="ps-product__title" href="{{config.root}}product/{{slug}}">{{name}}</a>
+                                    <p class="ps-product__price sale">${{final_price}} {{#if (gt price final_price)}}<del>${{price}} </del>{{/if}}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        {{/each}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+
+        <div class="ps-home-ads">
+            <div class="ps-container">
+                <div class="row">
+                    <div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-12 ">
+                        <a class="ps-collection" href="{{homepage.bottom_page_ad_1_link}}">
+                            <img class="bottomPageAdImg1" src="{{homepage.bottom_page_ad_1}}" alt="">
+                        </a>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-12 ">
+                        <a class="ps-collection" href="{{homepage.bottom_page_ad_2_link}}">
+                            <img class="bottomPageAdImg2" src="{{homepage.bottom_page_ad_2}}" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- <div class="ps-download-app">
+            <div class="ps-container">
+                <div class="ps-block--download-app">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
+                                <div class="ps-block__thumbnail"><img class="androidAppAdImg" src="{{homepage.android_app}}" alt=""></div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12 ">
+                                <div class="ps-block__content">
+                                    <h3>Download Postidal App Now!</h3>
+                                    <p>Shopping fastly and easily more with our app. Get a link to download the app on your phone</p>
+                                    <form class="ps-form--download-app" action="" method="post">
+                                        <div class="form-group--nest">
+                                            <input class="form-control" type="Email" placeholder="Email Address">
+                                            <button class="ps-btn">Subscribe</button>
+                                        </div>
+                                    </form>
+                                    <p class="download-link"><a href="#"><img src="https://res.cloudinary.com/dwrl5mija/image/upload/v1591386564/new/google-play.png" alt=""></a><a href="#"><img src="https://res.cloudinary.com/dwrl5mija/image/upload/v1591386586/new/app-store.png" alt=""></a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        <div class="ps-product-list ps-new-arrivals">
+            <div class="ps-container">
+                <div class="ps-section__header">
+                    <h3>Hot New Arrivals</h3>
+                    <ul class="ps-section__links">
+                        {{!-- <li><a href="shop-grid.html">Technologies</a></li>
+                        <li><a href="shop-grid.html">Electronic</a></li>
+                        <li><a href="shop-grid.html">Furnitures</a></li>
+                        <li><a href="shop-grid.html">Clothing & Apparel</a></li>
+                        <li><a href="shop-grid.html">Health & Beauty</a></li> --}}
+                        <li><a href="{{config.root}}shop">View All</a></li>
+                    </ul>
+                </div>
+                <div class="ps-section__content">
+                    <div class="row">
+
+                        {{#each newArrivals}}
+                        <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 ">
+                            <div class="ps-product--horizontal">
+                        <div class="ps-product__thumbnail"><a href="{{config.root}}product/{{slug}}"><img style="width:100px;height:100px;" src="{{images.[0]}}" alt=""></a></div>
+                                <div class="ps-product__content"><a class="ps-product__title" href="{{config.root}}product/{{slug}}">{{name}}</a>
+                                    {{!-- <div class="ps-product__rating">
+                                        <select class="ps-rating" data-read-only="true">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select><span>01</span>
+                                    </div> --}}
+                                    <p class="ps-product__price sale">${{final_price}} <del>${{price}} </del></p>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{!-- <div class="ps-newsletter">
+            <div class="ps-container">
+                <form class="ps-form--newsletter" action="" method="post">
+                    <div class="row">
+                        <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                            <div class="ps-form__left">
+                                <h3>Newsletter</h3>
+                                <p>Subcribe to get information about products and coupons</p>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                            <div class="ps-form__right">
+                                <div class="form-group--nest">
+                                    <input class="form-control" type="email" placeholder="Email address">
+                                    <button class="ps-btn">Subscribe</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div> --}}
+    </div>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><meta charset="utf-8">
+<title>Postidal Admin Panel</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta content="Postidal Admin Panel" name="description">
+<meta content="" name="author">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{config.root}}plugins/jquery-ui/jquery-ui.min.css">
+<link href="{{config.root}}css/metismenu.css" rel="stylesheet" type="text/css">
+<link href="{{config.root}}css/adminapp.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="{{config.root}}css/admin.css" type="text/css">
+<link rel="stylesheet" href="{{config.root}}css/lightpick.css" type="text/css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/do0nbotvxye20w0pvow53medmrk8jevrrmwv1jddutx3dn8w/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+</head>
+
+<body class="dark-sidenav mm-show">
+  
+  {{>admin/admin-side-nav}}
+   
+  {{>admin/admin-top-bar}}
+   <div class="page-wrapper">
+      <div class="page-content-tab">
+          {{#if success_message}}
+            <div class="alert alert-success text-center mt-2">{{success_message}}</div>
+          {{else if error_message}}
+            <div class="alert alert-danger text-center mt-2">{{error_message}}</div>
+          {{/if}}
+         <div class="container">
+            {{{body}}}
+         </div>
+      </div>
+   </div>
+</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="{{config.root}}plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="{{config.root}}plugins/jquery.slimscroll.min.js"></script>
+    <script src="{{config.root}}js/metismenu.js"></script>
+    <script src="{{config.root}}js/waves.js"></script>
+    {{!-- <script src="{{config.root}}js/feather.js"></script> --}}
+    {{!-- <script src="{{config.root}}js/apexcharts.js"></script> --}}
+    <script src="{{config.root}}js/adminapp.js"></script>
+    <script src="https://use.fontawesome.com/62e26e8a6e.js"></script>
+</html>

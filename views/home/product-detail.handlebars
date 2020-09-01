@@ -1,0 +1,494 @@
+<div class="ps-breadcrumb">
+        <div class="ps-container">
+            <ul class="breadcrumb">
+                <li><a href="{{config.root}}">Home</a></li>
+                <li>Product</li>
+                <li>{{product.name}}</li>
+            </ul>
+        </div>
+    </div>
+<div class="ps-page--product">
+        <div class="ps-container">
+            <div class="ps-page__container">
+                <div class="ps-page__left">
+                    <div class="ps-product--detail ps-product--fullwidth">
+                        <div class="ps-product__header">
+                            <div class="ps-product__thumbnail" data-vertical="true">
+                                <figure>
+                                    <div class="ps-wrapper">
+                                        <div class="ps-product__gallery slider" data-arrow="true">
+                                        {{#each product.images}}
+                                            <a href="{{.}}" tabindex="-1">
+                                            <img src="{{.}}" alt="" class="imgProductDetail">
+                                            </a>
+                                        {{/each}}
+                                    </div>
+                                </figure>
+                                {{!-- <div class="ps-product__variants slick-initialized slick-slider" data-item="4" data-md="4" data-sm="4" data-arrow="false">
+                                    
+                                    
+                                    
+                                <div aria-live="polite" class="slick-list draggable">
+                                    <div class="slick-track" role="listbox" style="opacity: 1; width: 204px; transform: translate3d(0px, 0px, 0px);">
+                                            {{#each product.images}}
+                                            <div class="item slick-slide slick-current slick-active" tabindex="-1" role="option" aria-describedby="slick-slide10" style="width: 58px;" data-slick-index="1" aria-hidden="false">
+                                            <a href="#lg=1&slide={{@index}}"><img src="{{.}}" alt=""></a>
+                                            </div>
+                                            {{/each}}
+                                            </div>
+                                            </div>
+                                            </div> --}}
+                            </div>
+                            <div class="ps-product__info">
+                                <h1>{{product.name}}</h1>
+                                <div class="ps-product__meta">
+                                    <p>Brand:<a href="#">{{product.brand}}</a></p>
+                                    {{!-- <div class="ps-product__rating">
+                                        <div class="br-wrapper br-theme-fontawesome-stars"><select class="ps-rating" data-read-only="true" style="display: none;">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select><div class="br-widget br-readonly"><a href="#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="2" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="3" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="4" class="br-selected br-current"></a><a href="#" data-rating-value="2" data-rating-text="5"></a><div class="br-current-rating">1</div></div></div><span>(1 review)</span>
+                                    </div> --}}
+                                </div>
+                                <h4 class="ps-product__price">${{product.final_price}} {{#if (gt product.price product.final_price)}}<del>${{product.price}} </del>{{/if}}</h4>
+                                <div class="ps-product__desc">
+                                    <p>Sold By:<a href="#"><strong> {{product.vendor}}</strong></a></p>
+                                    <ul class="ps-list--dot">
+                                        {{#each product.mainPoints}}
+                                        <li>{{.}}</li>
+                                        {{/each}}
+                                    </ul>
+                                </div>
+                                {{!-- <div class="ps-product__variations">
+                                    <figure>
+                                        <figcaption>Color</figcaption>
+                                        <div class="ps-variant ps-variant--color color--1"><span class="ps-variant__tooltip">Black</span></div>
+                                        <div class="ps-variant ps-variant--color color--2"><span class="ps-variant__tooltip"> Gray</span></div>
+                                    </figure>
+                                </div> --}}
+                                <div class="ps-product__shopping">
+                                    {{!-- <figure>
+                                        <figcaption>Quantity</figcaption>
+                                        <div class="form-group--number">
+                                            <button class="up"><i class="fa fa-plus"></i></button>
+                                            <button class="down"><i class="fa fa-minus"></i></button>
+                                            <input class="form-control" type="text" placeholder="1">
+                                        </div>
+                                    </figure> --}}
+                                    <form method="post" action="{{config.root}}cart">
+                                    <input type="hidden" name="_id" value="{{product._id}}">
+                                    <input type="hidden" name="qty" value="1">
+                                    <button class="ps-btn ps-btn--black marginBottomInMobile" type="submit">Add to cart</button>
+                                    <input type="hidden" name="buttonClicked" id="buttonClicked" value="">
+                                    <button class="ps-btn" type="submit" id="buyNowBtn">Buy Now</button>
+                                    </form>
+                                    {{!-- <div class="ps-product__actions"><a href="#"><i class="icon-heart"></i></a></div> --}}
+                                </div>
+                                <div class="ps-product__specification">
+                                    {{!-- <p><strong>SKU:</strong> SF1133569600-1</p> --}}
+                                    <p class="categories"><strong> Category : </strong><a href="/{{config.root}}category/{{product.category.slug}}">{{product.category.name}}</a></p>
+                                    <p class="categories"><strong> Subcategory : </strong><a href="/{{config.root}}shop?page=1&subcategory={{product.subcategory._id}}">{{product.subcategory.name}}</a></p>
+                                    <p class="tags"><strong> Tags : </strong>{{#each product.tags}}<a href="/{{config.root}}shop?page=1&tag={{.}}">{{.}} </a>{{/each}}</p>
+                                </div>
+                                {{!-- <div class="ps-product__sharing"><a class="facebook" href="#"><i class="fa fa-facebook"></i></a><a class="twitter" href="#"><i class="fa fa-twitter"></i></a><a class="google" href="#"><i class="fa fa-google-plus"></i></a><a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a><a class="instagram" href="#"><i class="fa fa-instagram"></i></a></div> --}}
+                            </div>
+                        </div>
+                        <div class="ps-product__content ps-tab-root">
+                            <ul class="ps-tab-list">
+                                <li class="active"><a href="#tab-1">Description</a></li>
+                                <li class=""><a href="#tab-2">Specification</a></li>
+                                <li class=""><a href="#tab-3">Vendor</a></li>
+                                <li class=""><a href="#tab-4">Reviews ({{#if reviews.count}} {{reviews.count}} {{else}}0{{/if}})</a></li>
+                            </ul>
+                            <div class="ps-tabs">
+                                <div class="ps-tab active" id="tab-1">
+                                    <div class="ps-document">
+                                        {{{product.description}}}
+                                    </div>
+                                </div>
+                                <div class="ps-tab" id="tab-2">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered ps-table ps-table--specification">
+                                            <tbody>
+                                                {{#each product.specifications}}
+                                                <tr>
+                                                    <td>{{key}}</td>
+                                                    <td>{{value}}</td>
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="ps-tab" id="tab-3">
+                                    <h4 style="text-transform:uppercase;">{{product.vendor}}</h4>
+                                </div>
+                                <div class="ps-tab" id="tab-4">
+                                    <div class="row">
+                                        {{#if reviews.count}}
+                                        <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-12 ">
+                                            <div class="ps-block--average-rating">
+                                                <div class="ps-block__header">
+                                                    <h3>{{reviews.average}}<i class="fa fa-star" style="font-size:3.5rem;color:#fcb800;position:relative;top:-0.65rem;"></i></h3>
+                                                    <span>{{reviews.count}} Reviews</span>
+                                                </div>
+                                                {{#each averageRatings as |avgRating avgIndex| }}
+                                                <div class="ps-block__star"><span>{{avgRating._id.rating}} Star</span>
+                                                    <div class="ps-progress" data-value="{{ multiply (divide avgRating._id.count ../reviews.count) 100 }}"><span style="width: {{ multiply (divide avgRating._id.count ../reviews.count) 100 }}%;"></span></div><span>{{ multiply (divide avgRating._id.count ../reviews.count) 100 }}%</span>
+                                                </div>
+                                                {{/each}}
+                                            </div>
+                                            {{!-- <div class="reviewsBlock">
+                                                {{#each reviews.data}}
+                                                <div class="col-md-12">
+                                                    <p>
+                                                        <span class="float-right">{{rating}} <i class="text-warning fa fa-star"></i></span>
+                                                    </p>
+                                                <div class="clearfix"></div>
+                                                <p>{{comment}}</p>
+                                                </div>
+                                                {{/each}}
+                                            </div> --}}
+                                        </div>
+                                        {{/if}}
+                                        <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12 ">
+                                            {{#if user}}
+                                            <form class="ps-form--review" action="/submit_review" method="post">
+                                                <input type="hidden" name="user_id" value="{{user._id}}">
+                                                <input type="hidden" name="product_id" value="{{product._id}}">
+                                                <input type="hidden" name="product_slug" value="{{product.slug}}">
+                                                <h4>Submit Your Review</h4>
+                                                <div class="form-group form-group__rating">
+                                                    <label>Your rating of this product</label>
+                                                    <div class="br-wrapper br-theme-fontawesome-stars"><select class="ps-rating" data-read-only="false" name="rating" required>
+                                                        <option value="0">0</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">5</option>
+                                                    </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <textarea class="form-control" rows="6" placeholder="Write your review here" name="comment" required></textarea>
+                                                </div>
+                                                <div class="form-group submit">
+                                                    <button class="ps-btn">Submit Review</button>
+                                                </div>
+                                            </form>
+                                            {{else}}
+                                            <div class="alert alert-danger">
+                                                You need to <a href="/my-account" style="color:blue;">login</a> to review this product !
+                                            </div>
+                                            {{/if}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ps-page__right">
+                    {{!-- <aside class="widget widget_product widget_features">
+                        <p><i class="icon-network"></i> Shipping worldwide</p>
+                        <p><i class="icon-3d-rotate"></i> Free 7-day return if eligible, so easy</p>
+                        <p><i class="icon-receipt"></i> Supplier give bills for this product.</p>
+                        <p><i class="icon-credit-card"></i> Pay online or when receiving goods</p>
+                    </aside> --}}
+                    {{!-- <aside class="widget widget_sell-on-site">
+                        <p><i class="icon-store"></i> Sell on Postidal?<a href="{{config.root}}my-account"> Register Now !</a></p>
+                    </aside> --}}
+                    {{!-- <aside class="widget widget_ads"><a href="#"><img src="/img/ads/product-ads.png" alt=""></a></aside> --}}
+                    
+                    {{#if sameBrandProducts.length}}
+                    <aside class="widget widget_same-brand pb-0">
+                        <h3 style="margin-bottom:0;padding-bottom:0;">Same Brand</h3>
+                        <div class="widget__content">
+                            {{#each sameBrandProducts}}
+                            <div class="ps-product">
+                                <div class="ps-product__thumbnail"><a href="/{{config.root}}product/{{slug}}"><img src="{{images.[0]}}" alt="" class="imgFixed"></a>
+                                    {{#if (gt discount 0)}}<div class="ps-product__badge">-{{discount}}%</div>{{/if}}
+                                    {{!-- <ul class="ps-product__actions">
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Read More"><i class="icon-bag2"></i></a></li>
+                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="icon-chart-bars"></i></a></li>
+                                    </ul> --}}
+                                </div>
+                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">{{vendor}}</a>
+                                    <div class="ps-product__content"><a class="ps-product__title" href="/{{config.root}}product/{{slug}}">{{name}}</a>
+                                        {{!-- <div class="ps-product__rating">
+                                            <div class="br-wrapper br-theme-fontawesome-stars"><select class="ps-rating" data-read-only="true" style="display: none;">
+                                                <option value="1">1</option>
+                                                <option value="1">2</option>
+                                                <option value="1">3</option>
+                                                <option value="1">4</option>
+                                                <option value="2">5</option>
+                                            </select><div class="br-widget br-readonly"><a href="#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="2" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="3" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="4" class="br-selected br-current"></a><a href="#" data-rating-value="2" data-rating-text="5"></a><div class="br-current-rating">1</div></div></div><span>01</span>
+                                        </div> --}}
+                                        <p class="ps-product__price sale">${{final_price}} {{#if (gt price final_price)}}<del>${{price}} </del>{{/if}}</p>
+                                    </div>
+                                    <div class="ps-product__content hover"><a class="ps-product__title" href="/{{config.root}}product/{{slug}}">{{name}}</a>
+                                        <p class="ps-product__price sale">${{final_price}} {{#if (gt price final_price)}}<del>${{price}} </del>{{/if}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </aside>
+                    {{/if}}
+
+                </div>
+            </div>
+            {{!-- <div class="ps-section--default ps-customer-bought">
+                <div class="ps-section__header">
+                    <h3>Customers who bought this item also bought</h3>
+                </div>
+                <div class="ps-section__content">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
+                            <div class="ps-product">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="/img/products/shop/4.jpg" alt=""></a>
+                                    <div class="ps-product__badge hot">hot</div>
+                                    <ul class="ps-product__actions">
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Read More"><i class="icon-bag2"></i></a></li>
+                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="icon-chart-bars"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Global Office</a>
+                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Xbox One Wireless Controller Black Color</a>
+                                        <div class="ps-product__rating">
+                                            <div class="br-wrapper br-theme-fontawesome-stars"><select class="ps-rating" data-read-only="true" style="display: none;">
+                                                <option value="1">1</option>
+                                                <option value="1">2</option>
+                                                <option value="1">3</option>
+                                                <option value="1">4</option>
+                                                <option value="2">5</option>
+                                            </select><div class="br-widget br-readonly"><a href="#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="2" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="3" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="4" class="br-selected br-current"></a><a href="#" data-rating-value="2" data-rating-text="5"></a><div class="br-current-rating">1</div></div></div><span>01</span>
+                                        </div>
+                                        <p class="ps-product__price">$55.99</p>
+                                    </div>
+                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Xbox One Wireless Controller Black Color</a>
+                                        <p class="ps-product__price">$55.99</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
+                            <div class="ps-product">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="/img/products/shop/5.jpg" alt=""></a>
+                                    <div class="ps-product__badge">-37%</div>
+                                    <ul class="ps-product__actions">
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Read More"><i class="icon-bag2"></i></a></li>
+                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="icon-chart-bars"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Robert's Store</a>
+                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Grand Slam Indoor Of Show Jumping Novel</a>
+                                        <div class="ps-product__rating">
+                                            <div class="br-wrapper br-theme-fontawesome-stars"><select class="ps-rating" data-read-only="true" style="display: none;">
+                                                <option value="1">1</option>
+                                                <option value="1">2</option>
+                                                <option value="1">3</option>
+                                                <option value="1">4</option>
+                                                <option value="2">5</option>
+                                            </select><div class="br-widget br-readonly"><a href="#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="2" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="3" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="4" class="br-selected br-current"></a><a href="#" data-rating-value="2" data-rating-text="5"></a><div class="br-current-rating">1</div></div></div><span>01</span>
+                                        </div>
+                                        <p class="ps-product__price sale">$32.99 <del>$41.00 </del></p>
+                                    </div>
+                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Grand Slam Indoor Of Show Jumping Novel</a>
+                                        <p class="ps-product__price sale">$32.99 <del>$41.00 </del></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
+                            <div class="ps-product">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="/img/products/shop/6.jpg" alt=""></a>
+                                    <div class="ps-product__badge">-5%</div>
+                                    <ul class="ps-product__actions">
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Read More"><i class="icon-bag2"></i></a></li>
+                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="icon-chart-bars"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Youngshop</a>
+                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Sound Intone I65 Earphone White Version</a>
+                                        <div class="ps-product__rating">
+                                            <div class="br-wrapper br-theme-fontawesome-stars"><select class="ps-rating" data-read-only="true" style="display: none;">
+                                                <option value="1">1</option>
+                                                <option value="1">2</option>
+                                                <option value="1">3</option>
+                                                <option value="1">4</option>
+                                                <option value="2">5</option>
+                                            </select><div class="br-widget br-readonly"><a href="#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="2" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="3" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="4" class="br-selected br-current"></a><a href="#" data-rating-value="2" data-rating-text="5"></a><div class="br-current-rating">1</div></div></div><span>01</span>
+                                        </div>
+                                        <p class="ps-product__price sale">$100.99 <del>$106.00 </del></p>
+                                    </div>
+                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Sound Intone I65 Earphone White Version</a>
+                                        <p class="ps-product__price sale">$100.99 <del>$106.00 </del></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
+                            <div class="ps-product">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="/img/products/shop/7.jpg" alt=""></a>
+                                    <div class="ps-product__badge">-16%</div>
+                                    <ul class="ps-product__actions">
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Read More"><i class="icon-bag2"></i></a></li>
+                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="icon-chart-bars"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Youngshop</a>
+                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Korea Long Sofa Fabric In Blue Navy Color</a>
+                                        <div class="ps-product__rating">
+                                            <div class="br-wrapper br-theme-fontawesome-stars"><select class="ps-rating" data-read-only="true" style="display: none;">
+                                                <option value="1">1</option>
+                                                <option value="1">2</option>
+                                                <option value="1">3</option>
+                                                <option value="1">4</option>
+                                                <option value="2">5</option>
+                                            </select><div class="br-widget br-readonly"><a href="#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="2" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="3" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="4" class="br-selected br-current"></a><a href="#" data-rating-value="2" data-rating-text="5"></a><div class="br-current-rating">1</div></div></div><span>01</span>
+                                        </div>
+                                        <p class="ps-product__price sale">$567.89 <del>$670.20 </del></p>
+                                    </div>
+                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Korea Long Sofa Fabric In Blue Navy Color</a>
+                                        <p class="ps-product__price sale">$567.89 <del>$670.20 </del></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
+                            <div class="ps-product">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="/img/products/shop/8.jpg" alt=""></a>
+                                    <div class="ps-product__badge">-16%</div>
+                                    <ul class="ps-product__actions">
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Read More"><i class="icon-bag2"></i></a></li>
+                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="icon-chart-bars"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young shop</a>
+                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Unero Military Classical Backpack</a>
+                                        <div class="ps-product__rating">
+                                            <div class="br-wrapper br-theme-fontawesome-stars"><select class="ps-rating" data-read-only="true" style="display: none;">
+                                                <option value="1">1</option>
+                                                <option value="1">2</option>
+                                                <option value="1">3</option>
+                                                <option value="1">4</option>
+                                                <option value="2">5</option>
+                                            </select><div class="br-widget br-readonly"><a href="#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="2" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="3" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="4" class="br-selected br-current"></a><a href="#" data-rating-value="2" data-rating-text="5"></a><div class="br-current-rating">1</div></div></div><span>02</span>
+                                        </div>
+                                        <p class="ps-product__price sale">$35.89 <del>$42.20 </del></p>
+                                    </div>
+                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Unero Military Classical Backpack</a>
+                                        <p class="ps-product__price sale">$35.89 <del>$42.20 </del></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-6 ">
+                            <div class="ps-product">
+                                <div class="ps-product__thumbnail"><a href="product-default.html"><img src="/img/products/shop/9.jpg" alt=""></a>
+                                    <ul class="ps-product__actions">
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Read More"><i class="icon-bag2"></i></a></li>
+                                        <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                        <li><a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Compare"><i class="icon-chart-bars"></i></a></li>
+                                    </ul>
+                                </div>
+                                <div class="ps-product__container"><a class="ps-product__vendor" href="#">Young shop</a>
+                                    <div class="ps-product__content"><a class="ps-product__title" href="product-default.html">Rayban Rounded Sunglass Brown Color</a>
+                                        <div class="ps-product__rating">
+                                            <div class="br-wrapper br-theme-fontawesome-stars"><select class="ps-rating" data-read-only="true" style="display: none;">
+                                                <option value="1">1</option>
+                                                <option value="1">2</option>
+                                                <option value="1">3</option>
+                                                <option value="1">4</option>
+                                                <option value="2">5</option>
+                                            </select><div class="br-widget br-readonly"><a href="#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="2" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="3" class="br-selected br-current"></a><a href="#" data-rating-value="1" data-rating-text="4" class="br-selected br-current"></a><a href="#" data-rating-value="2" data-rating-text="5"></a><div class="br-current-rating">1</div></div></div><span>02</span>
+                                        </div>
+                                        <p class="ps-product__price">$35.89</p>
+                                    </div>
+                                    <div class="ps-product__content hover"><a class="ps-product__title" href="product-default.html">Rayban Rounded Sunglass Brown Color</a>
+                                        <p class="ps-product__price">$35.89</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
+            {{#if (gt relatedProducts.length 1)}}
+            <div class="ps-deal-of-day">
+            <div class="ps-container">
+                <div class="ps-section__header">
+                    <div class="ps-block--countdown-deal">
+                        <div class="ps-block__left">
+                            <h3>Related Products</h3>
+                        </div>
+                    </div><a href="{{config.root}}shop">View all</a>
+                </div>
+            <div class="ps-section__content">
+                    <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="7" data-owl-item-xs="2" data-owl-item-sm="3" data-owl-item-md="4" data-owl-item-lg="5" data-owl-item-xl="6" data-owl-duration="1000" data-owl-mousedrag="on">
+                        {{#each relatedProducts}}
+                        <div class="ps-product ps-product--inner">
+                            <div class="ps-product__thumbnail"><a href="/{{config.root}}product/{{slug}}"><img class="imgFixed" src="{{images.[0]}}" alt=""></a>
+                                {{#if (gt discount 0) }}<div class="ps-product__badge">-{{discount}}%</div>{{/if}}
+                                {{!-- <ul class="ps-product__actions">
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Read More"><i class="icon-bag2"></i></a></li>
+                                    <li><a href="#" data-placement="top" title="Quick View" data-toggle="modal" data-target="#product-quickview"><i class="icon-eye"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Add to Whishlist"><i class="icon-heart"></i></a></li>
+                                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><i class="icon-chart-bars"></i></a></li>
+                                </ul> --}}
+                            </div>
+                            <div class="ps-product__container">
+                                <p class="ps-product__price sale">${{final_price}} {{#if (gt price final_price)}}<del>${{price}} </del>{{/if}}{{#if (gt discount 0)}}<small>{{discount}}% off</small>{{/if}}</p>
+                                <div class="ps-product__content"><a class="ps-product__title" href="/{{config.root}}product/{{slug}}">{{name}}</a>
+                                    {{!-- <div class="ps-product__rating">
+                                        <select class="ps-rating" data-read-only="true">
+                                            <option value="1">1</option>
+                                            <option value="1">2</option>
+                                            <option value="1">3</option>
+                                            <option value="1">4</option>
+                                            <option value="2">5</option>
+                                        </select><span>01</span>
+                                    </div> --}}
+                                    <div class="ps-product__progress-bar ps-progress" data-value="{{quantity}}">
+                                        <div class="ps-progress__value"><span style="max-width:100%;"></span></div>
+                                        <p>Remaining:{{quantity}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+
+                    </div>
+            </div>
+             </div>
+            </div>
+            {{/if}}
+        </div>
+        </div>
+    </div>
+
+    <script>
+        
+        $("#buyNowBtn").click(function(){
+            $("#buttonClicked").val("buy_now");
+        });
+
+    </script>
